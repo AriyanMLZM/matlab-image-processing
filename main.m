@@ -25,7 +25,28 @@ f = fftshift(f);
 c = input("Enter c: ");
 f_log = c * log(1 + f);
 %%
-image2 = imread
+image2 = imread("input2.png");
+image2 = imresize(image2, [512 512]);
+gray2 = im2gray(image2);
+
+minVal = min(gray2(:));
+maxVal = max(gray2(:));
+a = 255 / double(maxVal - minVal);
+
+cont = gray2;
+for r = 1:512
+    for c = 1:512
+        pixelVal = cont(r, c);
+        if pixelVal <= minVal
+            cont(r, c) = 0;
+        elseif pixelVal >= maxVal
+            cont(r, c) = 255;
+        else
+            cont(r, c) = a * double(pixelVal) - (a * double(minVal));
+        end
+    end
+end
+%%
 figure("Name", "results");
 tiledlayout(2, 3);
 
@@ -48,3 +69,14 @@ title("Fourier");
 nexttile;
 imshow(f_log, []);
 title("Log");
+
+figure("Name", "results2");
+tiledlayout(1, 2);
+
+nexttile;
+imshow(gray2);
+title("Gray");
+
+nexttile;
+imshow(cont);
+title("Contrast");
