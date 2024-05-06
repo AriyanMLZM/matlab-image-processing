@@ -47,6 +47,8 @@ for r = 1:512
     end
 end
 %%
+imhist(gray2);
+%%
 figure("Name", "results");
 tiledlayout(2, 3);
 
