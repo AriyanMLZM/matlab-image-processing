@@ -29,11 +29,11 @@ lowc = imread("lowc.png");
 lowc = imresize(lowc, [512 512]);
 lowc = im2gray(lowc);
 
-minVal = min(gray2(:));
-maxVal = max(gray2(:));
+minVal = min(lowc(:));
+maxVal = max(lowc(:));
 a = 255 / double(maxVal - minVal);
 
-cont = gray2;
+cont = lowc;
 for r = 1:512
     for c = 1:512
         pixelVal = cont(r, c);
@@ -89,7 +89,7 @@ figure("Name", "results2");
 tiledlayout(1, 2);
 
 nexttile;
-imshow(gray2);
+imshow(lowc);
 title("Gray");
 
 nexttile;
@@ -104,5 +104,49 @@ imshow(dark);
 title("dark");
 nexttile;
 imhist(dark);
-title("histogram")
+title("histogram");
 nexttile;
+imshow(histo_dark);
+title("hsitoeq");
+nexttile;
+imhist(histo_dark);
+title("histogram");
+
+nexttile;
+imshow(bright);
+title("bright");
+nexttile;
+imhist(bright);
+title("histogram");
+nexttile;
+imshow(histo_bright);
+title("histoeq");
+nexttile;
+imhist(histo_bright);
+title("histogram");
+
+nexttile;
+imshow(lowc);
+title("low contrast");
+nexttile;
+imhist(lowc);
+title("histogram");
+nexttile;
+imshow(histo_lowc);
+title("histoeq");
+nexttile;
+imhist(histo_lowc);
+title("histogram");
+
+nexttile;
+imshow(highc);
+title("high contrast");
+nexttile;
+imhist(highc);
+title("histogram");
+nexttile;
+imshow(histo_highc);
+title("histoeq");
+nexttile;
+imhist(histo_highc);
+title("histogram");
