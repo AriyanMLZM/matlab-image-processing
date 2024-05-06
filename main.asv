@@ -97,30 +97,55 @@ imshow(cont);
 title("Contrast");
 %%
 figure("Name", "results3");
-tiledlayout(4, 4);
 
-nexttile;
+subplot(4, 4, 1);
 imshow(dark);
 title("dark");
-nexttile;
+subplot(4, 4, 2);
 imhist(dark);
 title("histogram");
-nexttile;
+subplot(4, 4, 3);
 imshow(histo_dark);
-title("dark");
-nexttile;
+title("histoeq");
+subplot(4, 4, 4);
 imhist(histo_dark);
 title("histogram");
 
-nexttile;
+subplot(4, 4, 5);
 imshow(bright);
 title("bright");
-nexttile;
+subplot(4, 4, 6);
 imhist(bright);
 title("histogram");
-nexttile;
+subplot(4, 4, 7);
 imshow(histo_bright);
-title("hist");
-nexttile;
+title("histoeq");
+subplot(4, 4, 8);
 imhist(histo_bright);
+title("histogram");
+
+subplot(4, 4, 9);
+imshow(lowc);
+title("low contrast");
+subplot(4, 4, 10);
+imhist(lowc);
+title("histogram");
+subplot(4, 4, 11);
+imshow(histo_lowc);
+title("histoeq");
+subplot(4, 4, 12);
+imhist(histo_lowc);
+title("histogram");
+
+
+imshow(highc);
+title("high contrast");
+nexttile;
+imhist(highc);
+title("histogram");
+nexttile;
+imshow(histo_highc);
+title("histoeq");
+nexttile;
+imhist(histo_highc);
 title("histogram");
