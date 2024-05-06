@@ -50,12 +50,6 @@ end
 dark = imread("dark.png");
 bright = imread("bright.png");
 highc = imread("highc.png");
-dark = imresize(dark, [512 512]);
-bright = imresize(bright, [512 512]);
-highc = imresize(highc, [512 512]);
-dark = im2gray(dark);
-bright = im2gray(bright);
-highc = im2gray(highc);
 
 histo_dark = histeq(dark);
 histo_bright = histeq(bright);
@@ -99,10 +93,4 @@ title("Contrast");
 figure("Name", "results3");
 tiledlayout(4, 4);
 
-nexttile;
-imshow(dark);
-title("dark");
-nexttile;
-imhist(dark);
-title("histogram")
-nexttile;
+nexttile
