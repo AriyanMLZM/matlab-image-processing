@@ -7,18 +7,27 @@ image = imresize(image, [512 512]);
 gray = im2gray(image);
 
 noised = imnoise(gray, 'salt & pepper');
-% imshow(noised);
+
+mask = ones(3);
 
 sum = 0;
-mask = ones(3);
-smoothed = zeros();
+smoothed_avg = zeros(512 - 2);
 for row = 1:(512 - 2)
     for col = 1:(512 - 2)
+        maskRow = 1;
         for innerRow = row:(row + 2)
+            maskCol = 1;
             for innerCol = col:(col + 2)
-                sum =  sum + noised(innerRow, innerCol);
+                sum = sum + double(noised(innerRow, innerCol)) * mask(maskRow, maskCol);
+                maskCol = maskCol + 1;
             end
+            maskRow = maskRow + 1;
         end
         avg = sum / 9;
-        smoothed(row, col) = avg;
+        avg = avg / 255;
+        smoothed_avg(row, col) = avg;
+        sum = 0;
     end
+end
+
+imshow(smoothed_avg)
