@@ -2,8 +2,10 @@ clear;
 close all;
 clc;
 
+h = 512;
+w = 512;
 image = imread("input.jpg");
-image = imresize(image, [512 512]);
+image = imresize(image, [w h]);
 gray = im2gray(image);
 
 noised = imnoise(gray, 'salt & pepper');
@@ -11,9 +13,9 @@ noised = imnoise(gray, 'salt & pepper');
 mask = ones(3);
 
 sum = 0;
-smoothed_avg = zeros(512 - 2);
-for row = 1:(512 - 2)
-    for col = 1:(512 - 2)
+smoothed_avg = zeros(w - 2);
+for row = 1:(h - 2)
+    for col = 1:(w - 2)
         maskRow = 1;
         for innerRow = row:(row + 2)
             maskCol = 1;
@@ -30,10 +32,10 @@ for row = 1:(512 - 2)
     end
 end
 
-smoothed_med = zeros(512 - 2);
+smoothed_med = zeros(w - 2);
 med_list = zeros(3);
-for row = 1:(512 - 2)
-    for col = 1:(512 - 2)
+for row = 1:(h - 2)
+    for col = 1:(w - 2)
         maskRow = 1;
         for innerRow = row:(row + 2)
             maskCol = 1;
@@ -67,4 +69,3 @@ title("Avg Mask Filter");
 nexttile;
 imshow(smoothed_med);
 title("Median Mask Filter");
-
