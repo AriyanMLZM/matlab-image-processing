@@ -2,7 +2,7 @@ clear;
 close all;
 clc;
 
-image = imread("input.jpg");
+image = imread("./inputs/input.jpg");
 image = imresize(image, [512 512]);
 %%
 gray = im2gray(image);
@@ -25,7 +25,7 @@ f = fftshift(f);
 c = input("Enter c: ");
 f_log = c * log(1 + f);
 %%
-lowc = imread("lowc.png");
+lowc = imread("./inputs/lowc.png");
 lowc = imresize(lowc, [512 512]);
 lowc = im2gray(lowc);
 
@@ -47,9 +47,9 @@ for r = 1:512
     end
 end
 %%
-dark = imread("dark.png");
-bright = imread("bright.png");
-highc = imread("highc.png");
+dark = imread("./inputs/dark.png");
+bright = imread("./inputs/bright.png");
+highc = imread("./inputs/highc.png");
 dark = imresize(dark, [512 512]);
 bright = imresize(bright, [512 512]);
 highc = imresize(highc, [512 512]);

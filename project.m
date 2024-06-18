@@ -3,7 +3,7 @@ clear;
 close all;
 
 % a) get image
-image = imread("input.jpg");
+image = imread("./inputs/input.jpg");
 image = imresize(image, [512 512]);
 image = im2gray(image);
 

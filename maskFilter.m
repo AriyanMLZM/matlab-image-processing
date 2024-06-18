@@ -4,7 +4,7 @@ clc;
 
 h = 512;
 w = 512;
-image = imread("input.jpg");
+image = imread("./inputs/input.jpg");
 image = imresize(image, [w h]);
 gray = im2gray(image);
 
