@@ -1,32 +1,42 @@
+% Ariyan Molazem
+% 9911326
+
 clc;
 clear;
 close all;
 
-% a) get image
 image = imread("./inputs/project.png");
 image = im2gray(image);
 
-% b) implement laplacian
-lap = locallapfilt(image, 0.5, 0.5);
-
-% c) add laplacian to original
+sigma = 0.5;
+alpha = 0.5;
+lap = locallapfilt(image, sigma, alpha);
 added_image = imadd(image, lap);
-
-% d) implement sobel gradient
-[gmag, gdir] = imgradient(image, "sobel");
-
-% e) implement smoothing with box filter 5x5
-smoothed = imboxfilt(uint8(gdir), 5);
-
-% f) get product of e and b
-product = immultiply(lap, smoothed);
-
-% g) add original to f
-added_image2 = imadd(image, product);
-
-% h) implement power law transform
+smoothed = imboxfilt(added_image, 5);
+smoothed = imadd(image, smoothed);
 gamma = 0.4;
-added_image2 = im2double(added_image2);
-power_law = added_image2 .^ gamma;
+smoothed = im2double(smoothed);
+power_law = smoothed .^ gamma;
 
-imshow(power_law)
+figure("Name", "Project");
+tiledlayout(2, 3);
+
+nexttile;
+imshow(image);
+title("original");
+
+nexttile;
+imshow(lap);
+title("laplacian");
+
+nexttile;
+imshow(added_image);
+title("added image");
+
+nexttile;
+imshow(smoothed);
+title("smoothed");
+
+nexttile;
+imshow(power_law);
+title("power law transform");
